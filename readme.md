@@ -29,5 +29,6 @@ Add an empy file named 'ssh' to the boot partition
 ## Setup Ansible
 Now, with a totally fresh raspbian install, use ansible to configure all the nodes.
 - Add each nodes IP to the ansible hosts file.
-- TEST: ensure you can ping all the nodes `ansible -i hosts all -m ping`
-
+- TEST: ensure you can ping all the nodes `ansible -i ansible/hosts --ask-pass all -m ping`
+- Issue: deal with host-key-checking one way or another
+  - add host keys to known hosts file maybe?
