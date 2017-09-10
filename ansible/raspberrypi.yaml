@@ -1,0 +1,7 @@
+---
+- hosts: rpi
+  remote_user: pi
+  become: true
+  roles:
+    - role: mikolak.raspi-config
+      raspi_config_hostname: {{inventory_hostname}}

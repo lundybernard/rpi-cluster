@@ -32,3 +32,7 @@ Now, with a totally fresh raspbian install, use ansible to configure all the nod
 - TEST: ensure you can ping all the nodes `ansible -i ansible/hosts --ask-pass all -m ping`
 - Issue: deal with host-key-checking one way or another
   - add host keys to known hosts file maybe?
+- Install 3rd party ansible roles `ansible-galaxy install -r requirements.yaml`
+
+
+## Configure Devices
