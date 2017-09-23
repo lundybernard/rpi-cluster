@@ -1,0 +1,11 @@
+# update apt packages
+- name: update apt packages
+  become: yes
+  apt:
+    update_cache=yes
+
+# upgrade apt packages
+- name: upgrade apt packages
+  become: yes
+  apt:
+    upgrade=dist

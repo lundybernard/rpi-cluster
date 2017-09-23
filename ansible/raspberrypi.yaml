@@ -1,3 +1,5 @@
+# ansible-playbook -i hosts raspberrypi.yaml
+
 ---
 - hosts: rpi
   remote_user: pi

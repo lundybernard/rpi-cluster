@@ -34,14 +34,18 @@ Now, with a totally fresh raspbian install, use ansible to configure all the nod
   - add host keys to known hosts file maybe?
 - Install 3rd party ansible roles `ansible-galaxy install -r requirements.yaml`
 - create an ansible.cfg file, to avoid having to use `-i hosts` when running commands
+- add `# ansible-playbook -i hosts <playbook file name>` to your playbooks so they can be run with `ansible-playbook <playbook name>.yaml`
 
 ## Configure Devices
 Initial config:
+1. change the default pi user password to something random
+
+`ansible-playbook set_pi_usr_pas.yaml`
+
+2. Initial new raspberry pi configuration
 
 `ansible-playbook raspberrypi.yaml --ask-pass --verbose -f 10`
 
 once our ssh key has been copied up, we dont need to --ask-pass again.
-
-- change the remote_user in raspberrypi.yaml to the value of  raspi_config_replace_user: name:
 
 `ansible-playbook raspberrypi.yaml --verbose -f 10`

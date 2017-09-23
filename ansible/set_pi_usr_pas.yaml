@@ -1,0 +1,16 @@
+# ansible-playbook -i hosts set_pi_usr_pas.yaml
+
+---
+- hosts: rpi
+  gather_facts: yes
+
+  vars_prompt:
+    - name: new_password
+      prompt: "please enter a new password for the pi user"
+      private: yes
+
+  tasks:
+    - name: update default pi user password
+      user:
+        name: 'pi'
+        password: '{{ new_password | password_hash("sha512")  }}'
