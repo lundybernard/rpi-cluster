@@ -1,8 +1,8 @@
 ---
 - hosts: localhost
   vars:
-    hashed_pas: '{{ "wark!" | hash_pas }}' 
+    hashed_pass: '{{ "wark!" | hash_pas }}' 
   tasks:
     - name: Test hash_pas filter
       assert:
-        that: 'hashed_pass == $6$random_salt$B1DlPx1dQ5WIk01WSvI2xZ633gH7/nyZGICFd0Q.mCmNFjyq8/LGrak4uR.4WIxZiEIR9VjDpBeW0.fAQV2vc1'
+        that: 'hashed_pass == "$6$random_salt$B1DlPx1dQ5WIk01WSvI2xZ633gH7/nyZGICFd0Q.mCmNFjyq8/LGrak4uR.4WIxZiEIR9VjDpBeW0.fAQV2vc1"'
