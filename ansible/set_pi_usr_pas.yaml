@@ -13,4 +13,5 @@
     - name: update default pi user password
       user:
         name: 'pi'
-        password: '{{ new_password | password_hash("sha512")  }}'
+        password: '{{ new_password | hash_pas  }}'
+      become: true
