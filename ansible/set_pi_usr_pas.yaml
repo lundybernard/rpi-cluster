@@ -6,12 +6,22 @@
 
   vars_prompt:
     - name: new_password
-      prompt: "please enter a new password for the pi user"
+      prompt: please enter a new password for the pi user
       private: yes
 
   tasks:
+    - name: Set pi group id
+      group:
+        name: pi
+        gid: 1000
+      become: true
+
     - name: update default pi user password
       user:
-        name: 'pi'
+        name: pi
         password: '{{ new_password | hash_pas  }}'
+        ssh_key_file: ~/.ssh/id_rsa.pub
+        uid: 1000
+        group: pi
+        shell: /bin/bash
       become: true

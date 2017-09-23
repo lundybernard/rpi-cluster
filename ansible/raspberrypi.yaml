@@ -6,7 +6,4 @@
   become: true
   roles:
     - role: mikolak.raspi-config
-      raspi_config_hostname: "{{inventory_hostname}}"
-      raspi_config_replace_user:
-         name: rpi
-         path_to_ssh_key: "~/.ssh/id_rsa.pub"
+      raspi_config_hostname: "{{ inventory_hostname }}"
