@@ -1,0 +1,18 @@
+---
+- name: deploy dscheduler service
+  sudo: yes
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  with_items:
+    - src: dscheduler.service.j2
+      dest: /usr/lib/systemd/system/dscheduler.service
+
+- name: deploy dworker service
+  sudo: yes
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  with_items:
+    - src: dworker.service.j2
+      dest: /usr/lib/systemd/system/dworker.service

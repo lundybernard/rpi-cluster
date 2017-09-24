@@ -1,0 +1,17 @@
+---
+# necessary steps to configure the role
+
+- name: install base condarc
+  copy:
+    src: '{{ item }}'
+    dest: '~/.{{ item }}'
+  with_items:
+    - condarc
+  when: miniconda_add_condarc
+
+- name: add miniconda to the PATH
+  lineinfile:
+    dest: '{{ miniconda_rcfile }}'
+    line: 'export PATH={{ miniconda_home }}/bin:$PATH'
+    state: present
+  when: miniconda_modify_path

@@ -12,16 +12,22 @@
   tasks:
     - name: Set pi group id
       group:
-        name: pi
+        name: '{{ ansible_user }}'
         gid: 1000
       become: true
 
     - name: update default pi user password
       user:
-        name: pi
+        name: '{{ ansible_user }}'
         password: '{{ new_password | hash_pas  }}'
         ssh_key_file: ~/.ssh/id_rsa.pub
         uid: 1000
         group: pi
         shell: /bin/bash
       become: true
+
+    - name: Set SSH Key
+      authorized_key:
+        user: '{{ ansible_user }}'
+        state: present
+        key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"

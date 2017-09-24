@@ -1,0 +1,7 @@
+# ansible-playbook -i hosts miniconda.yaml
+
+---
+- hosts: rpi
+  remote_user: pi
+  roles:
+    - role: miniconda

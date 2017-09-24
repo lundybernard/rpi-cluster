@@ -1,0 +1,33 @@
+---
+# necessary steps to deploy the role.
+
+- name: miniconda is installed
+  stat:
+    path: '{{ miniconda_home }}/bin/conda'
+  register: bin_conda
+  changed_when: bin_conda.stat.exists == False
+
+- name: download miniconda installer
+  get_url:
+    url: '{{ miniconda_url }}'
+    dest: /tmp/miniconda.sh
+    mode: 0755
+  register: miniconda_downloaded
+  when: bin_conda.stat.exists == False
+
+- name: install miniconda
+  command: '/tmp/miniconda.sh -b -p {{ miniconda_home }}'
+  args:
+    creates: '{{ miniconda_home }}'
+    executable: '/bin/bash'
+  register: miniconda_installed
+  when: miniconda_downloaded | success
+  notify:
+    - remove miniconda setup script
+    - update conda to latest version
+
+- name: update miniconda is up-to-date
+  command: '"{{ miniconda_home }}/bin/conda" update conda -y -q'
+  register: miniconda_update
+  when: miniconda_update_conda
+  changed_when: '"All requested packages already installed" in miniconda_update'

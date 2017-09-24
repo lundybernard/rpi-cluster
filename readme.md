@@ -36,11 +36,12 @@ Now, with a totally fresh raspbian install, use ansible to configure all the nod
 - create an ansible.cfg file, to avoid having to use `-i hosts` when running commands
 - add `# ansible-playbook -i hosts <playbook file name>` to your playbooks so they can be run with `ansible-playbook <playbook name>.yaml`
 
+
 ## Configure Devices
 Initial config:
 1. change the default pi user password to something random
 
-`ansible-playbook set_pi_usr_pas.yaml`
+`ansible-playbook set_pi_usr_pas.yaml --ask-pass`
 
 2. Initial new raspberry pi configuration
 
@@ -49,3 +50,19 @@ Initial config:
 once our ssh key has been copied up, we dont need to --ask-pass again.
 
 `ansible-playbook raspberrypi.yaml --verbose -f 10`
+
+
+## Install Miniconda
+
+### manual install notes:
+
+```
+wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-armv7l.sh
+/bin/bash Miniconda3-latest-Linux-armv7l.sh -b -p miniconda
+echo 'export PATH="/home/pi/miniconda/bin:$PATH"' >> .bashrc
+
+conda update --yes conda
+conda create --yes --name dask --channel rpi dask
+
+
+```

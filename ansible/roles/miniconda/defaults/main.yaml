@@ -1,0 +1,19 @@
+miniconda_url: >
+  http://repo.continuum.io/miniconda/Miniconda3-latest-Linux-armv7l.sh
+
+miniconda_home: '~/miniconda'
+
+miniconda_environments:
+  - name: prod
+    python_version: 3.6
+    pkgs: ''
+
+miniconda_modify_path: no
+miniconda_rcfile: '~/.bashrc'
+
+miniconda_add_condarc: yes
+miniconda_python: 3.6
+miniconda_version: "latest"
+miniconda_update_conda: False
+miniconda_env: ""
+miniconda_manage_dependencies: True
